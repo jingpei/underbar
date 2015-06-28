@@ -196,6 +196,26 @@
   // provided, provide a default one
   _.some = function(collection, iterator) {
     // TIP: There's a very clever way to re-use every() here.
+
+    // if(iterator === undefined){ iterator = _.identity }
+    // return _.filter(collection, iterator).length > 0
+    
+    //_.some() will return true if the accumulator returns false
+    //reverse return value of _.every()
+
+    return !_.every(collection, function(x){
+      if(iterator === undefined){
+        iterator = _.identity
+      }
+
+      //_.every() only returns true if no elements pass the truth test
+      //_.reduce() will set accumulator to false in the case of 
+      //prevMatch === true && current === (!true) or 
+      //prevMatch === false && current === (!true) or
+      //prevMatch === false && current === (!false)
+
+      return !iterator(x)
+    })
   };
 
 
