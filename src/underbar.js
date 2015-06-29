@@ -239,13 +239,24 @@
   //   }); // obj1 now contains key1, key2, key3 and bla
   _.extend = function(obj) {
     Array.prototype.shift.apply(arguments)
-    _.each(arguments, function(inputObj){ _.each(inputObj, function(keyVal, i){ obj[i] = keyVal }) })
+    _.each(arguments, function(inputObj){ 
+      _.each(inputObj, function(keyVal, i){ 
+        obj[i] = keyVal 
+      }) 
+    })
     return obj
   };
 
   // Like extend, but doesn't ever overwrite a key that already
   // exists in obj
   _.defaults = function(obj) {
+    Array.prototype.shift.apply(arguments)
+    _.each(arguments, function(inputObj){ 
+      _.each(inputObj, function(keyVal, i){ 
+        if( !_.contains(Object.keys(obj), i) ){ obj[i] = keyVal }
+      }) 
+    })
+    return obj
   };
 
 
