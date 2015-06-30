@@ -342,10 +342,6 @@
       random[switched] = current
       random[currIndex] = target
     })
-    // console.log('original')
-    // console.log(array)
-    // console.log('shuffled')
-    // console.log(random)
     return random
   };
 
