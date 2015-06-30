@@ -300,6 +300,16 @@
   // already computed the result for the given argument and return that value
   // instead if possible.
   _.memoize = function(func) {
+    var alreadyCalled = {}
+    return function(){
+      if(alreadyCalled[Array.prototype.join.apply(arguments)] !== undefined){
+        return alreadyCalled[Array.prototype.join.apply(arguments)]
+      }
+      else{
+        alreadyCalled[Array.prototype.join.apply(arguments)] = func.apply(this, arguments)
+        return alreadyCalled[Array.prototype.join.apply(arguments)]
+      }
+    }
   };
 
   // Delays a function for the given number of milliseconds, and then calls
