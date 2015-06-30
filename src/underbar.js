@@ -335,6 +335,18 @@
   // input array. For a tip on how to make a copy of an array, see:
   // http://mdn.io/Array.prototype.slice
   _.shuffle = function(array) {
+    var random = Array.prototype.slice.call(array, 0)
+    _.each(random, function(current, currIndex){
+      var switched = Math.floor(Math.random() * (random.length))
+      var target = random[switched]
+      random[switched] = current
+      random[currIndex] = target
+    })
+    // console.log('original')
+    // console.log(array)
+    // console.log('shuffled')
+    // console.log(random)
+    return random
   };
 
 
